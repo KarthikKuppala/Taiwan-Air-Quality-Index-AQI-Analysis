@@ -50,7 +50,7 @@ This project examines the correlation between the Air Quality Index (AQI) and di
 
 * `AQI_Analysis.R`: Full R code including synthetic data generation and regression modeling.
 * `Taiwan_AQI_Analysis.pdf`: A formal research paper documenting the full methodology and results.
-* airQuality.csv: Unavailable due to copyright issues and rules about data reproduction.
+* airQuality.csv: Original file unavailable due to copyright issues and rules about data reproduction. A kaggle dataset has been added instead to fill the gap.
 
 ## Results from orginal data
 
