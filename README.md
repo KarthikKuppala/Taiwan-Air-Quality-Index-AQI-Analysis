@@ -54,7 +54,7 @@ This project examines the correlation between the Air Quality Index (AQI) and di
 
 ## Results from orginal data
 
-As the data file which I orginally used as a source is not available I figured I'd display my visualizatoins and results to help understand my observations.
+As the data file which I orginally used as a source is not available I figured I'd display my visualizations and results to help understand my observations.
 
 Result 1:
 <img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/1ae1b874-3ad1-4af4-b2d4-b70471d26cd4" />
