@@ -1,0 +1,77 @@
+# -------------------------------------------------------------------------
+# Project: Modeling Pollutant Measures Associations with the Taiwan AQI
+# Author: Karthik Kuppala
+# -------------------------------------------------------------------------
+
+# NOTE ON DATA SOURCE:
+# The original 'airQuality.csv' file used in this analysis is not included 
+# in this repository due to copyright/licensing restrictions. 
+#
+# WORKAROUND:
+# To reproduce these results::
+# 1. Download the "Taiwan Air Quality Index Data 2016-2024" from Kaggle:
+#    https://www.kaggle.com/datasets/taweilo/taiwan-air-quality-data-20162024
+# 2. Alternatively, fetch real-time or historical data from the Taiwan 
+#    Government Open Data Platform: https://data.gov.tw/en/datasets/40507
+# 3. Rename your downloaded file to 'airQuality.csv' and make sure it contains 
+#    the columns: 'aqi', 'pm2.5', 'pm10', and 'co'.
+# -------------------------------------------------------------------------
+
+# Reading the dataset
+# Ensure the CSV is in your working directory
+fullData <- read.csv("airQuality.csv")
+
+# Based on the original analysis using the last digits of a student ID
+seedvalue <- 46212
+set.seed(seedvalue)
+
+# Splitting the data into training (80%) and testing (20%) sets
+sampRecs <- sample(c(TRUE, FALSE), nrow(fullData), replace = TRUE, prob = c(0.8, 0.2))
+trainData <- fullData[sampRecs, ]
+testData <- fullData[!sampRecs, ]
+
+# Understanding the variables
+summary(testData)
+
+# Removing unnecessary objects from the environment
+rm(list = c("fullData", "sampRecs"))
+
+# Calculating Pearson correlations between AQI and the predictors
+cor_aqi_pm10 <- cor(trainData$aqi, trainData$pm10)
+cor_aqi_pm25 <- cor(trainData$aqi, trainData$pm2.5)
+cor_aqi_co <- cor(trainData$aqi, trainData$co)
+
+# Print correlation results
+print(paste("Correlation between AQI and PM10:", round(cor_aqi_pm10, 2)))
+print(paste("Correlation between AQI and PM2.5:", round(cor_aqi_pm25, 2)))
+print(paste("Correlation between AQI and CO:", round(cor_aqi_co, 2)))
+
+# Simple Linear Regression Model
+# Based on my report, PM2.5 was the strongest predictor. So check on your end.
+model <- lm(aqi ~ pm2.5, data = trainData)
+summary(model)
+
+# Model Assumptions Check: Independence of Errors
+# Correlation between residuals and fitted values (should be ~0)
+res.vals <- residuals(model)
+fit.vals <- fitted.values(model)
+cor_res_fit <- cor(res.vals, fit.vals)
+print(paste("Correlation between residuals and fits:", round(cor_res_fit, 4)))
+
+# Model Assumptions Check: Homoscedasticity and Linearity
+# Standardized Residuals Plot
+res.std.vals <- rstandard(model)
+plot(x = fit.vals, y = res.std.vals, 
+     xlab = "Fitted Values", ylab = "Standardized Residuals",
+     main = "Standardized Residuals vs Fitted Values")
+abline(h = 0, col = "red")
+
+# Model Assumptions Check: Normality of Errors
+# Normal Q-Q Plot
+qqnorm(res.std.vals, main = "Normal Q-Q Plot")
+qqline(res.std.vals, col = "red")
+
+# Evaluating Model Performance on Test Data
+predictions <- predict(model, newdata = testData)
+mae <- mean(abs(predictions - testData$aqi))
+print(paste("Mean Absolute Error (MAE):", round(mae, 2)))
