@@ -42,7 +42,7 @@ This project examines the correlation between the Air Quality Index (AQI) and di
 
 **Clone the Repository:** git clone https://github.com/YourUsername/Taiwan-AQI-Analysis.git
 
-**Ensure Data Availability:** Place the airQuality.csv file (if available) in the /data directory.
+**Ensure Data Availability:** Place the airQuality.csv file (if available) in the /data directory. (Download from [Kaggle dataset](https://www.kaggle.com/datasets/taweilo/taiwan-air-quality-data-20162024))
 
 **Execute Analysis:** Open AQI_Analysis.R in RStudio and run the script.
 
@@ -50,7 +50,7 @@ This project examines the correlation between the Air Quality Index (AQI) and di
 
 * `AQI_Analysis.R`: Full R code including synthetic data generation and regression modeling.
 * `Taiwan_AQI_Analysis.pdf`: A formal research paper documenting the full methodology and results.
-* airQuality.csv: Original file unavailable due to copyright issues and rules about data reproduction. A kaggle dataset has been added instead to fill the gap.
+* airQuality.csv: Original file unavailable due to copyright + GitHub repo upload limit issues and Git. Use this [Kaggle dataset](https://www.kaggle.com/datasets/taweilo/taiwan-air-quality-data-20162024) instead to fill the gap.
 
 ## Results from orginal data
 
