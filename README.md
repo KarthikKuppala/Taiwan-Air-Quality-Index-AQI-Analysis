@@ -1,4 +1,4 @@
-# Taiwan-Air-Quality-Index-AQI-Analysis
+# Taiwan-Air-Quality-Index Analysis
 Project investigates relationship between the Air Quality Index (AQI) and various pollutant levels.
 
 # Modeling Taiwan Air Quality Index (AQI) using Simple Linear Regression
