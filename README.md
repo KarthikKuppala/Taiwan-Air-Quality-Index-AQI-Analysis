@@ -70,7 +70,7 @@ Result 4:
 
 ~
 
-Thanks for taking the time to have a look at my work <3
+Thank you for taking the time to have a look at my work <3
 
 
 
